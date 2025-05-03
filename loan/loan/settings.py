@@ -121,6 +121,12 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://loan-production-ed05.up.railway.app',
+]
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
