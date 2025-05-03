@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Loan - Hisab</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link rel="icon" href="https://i.imgur.com/uOMrNf2.png" />
+
+    <style type="text/css">
+      :root {
+        --header-background: #fff;
+        --black: #192a56;
+        --light-color: #666;
+        --green: #27ae60;
+        --dishes-color: #eee;
+        --dropdown-content-background: #f1f1f1;
+        --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Header Css Start */
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--header-background);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2% 5%;
+        box-shadow: var(--box-shadow);
+        z-index: 1;
+      }
+
+      header .logo {
+        color: var(--black);
+        font-size: 17px;
+        font-weight: bolder;
+        text-decoration: none;
+      }
+
+      header .navbar a {
+        border: px solid;
+        font-size: 17px;
+        border-radius: 5px;
+        padding: 8px 13px;
+        color: var(--light-color);
+        text-decoration: none;
+      }
+
+      header .navbar a:hover {
+        /* color: var(--header-background);
+        background: var(--green); */
+        border-bottom: 2px solid var(--green);
+        border-radius: 0px;
+      }
+
+      header .icons a {
+        margin-left: 8px;
+        text-decoration: none;
+        width: 40px;
+      }
+
+      #search-input {
+        position: absolute;
+        top: 50%;
+        right: 35px;
+        transform: translateY(-50%);
+        padding: 9px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px; /* Adjust as needed */
+      }
+
+      /* Header css End */
+
+      .homeContent {
+        width: 100%;
+        margin-top: 85px;
+        height: fit-content;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 25px;
+      }
+
+      td,
+      th {
+        border: 1px solid #ccc;
+        padding: 15px;
+      }
+
+      .equal {
+        width: 50%;
+      }
+
+      table {
+        width: 50%;
+        border: 1px solid;
+        border-collapse: collapse;
+        text-align: center;
+        margin-top: 25px;
+      }
+
+      .bar-container {
+        width: 100%;
+        height: 30px;
+        background-color: red;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .bar-green {
+        height: 100%;
+        background-color: green;
+        transition: width 0.5s;
+      }
+
+      .info-table tr,
+      th,
+      td {
+        padding: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <!..Header start here..>
+    
+    <header>
+      <a href="/index" class="logo">
+        <img
+          id="logo-img"
+          src="https://i.imgur.com/tDLvRWa.png"
+          alt="Loan - Hisab"
+          height="30px"
+        />
+      </a>
+
+      <nav class="navbar">
+        <a href="/index">Home</a>
+        <a href="/history">History</a>
+        <a href="/paid">Paid History</a>
+        <a href="login/">Login</a>
+        <a href="logout.php">Logout</a>
+      </nav>
+
+      <div class="icons">
+        <div class="search-container">
+          <form>
+            <input type="text" id="search-input" placeholder="Search..." />
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <!..Header Ends here..>
+
+    <section class="homeContent">
+      <table>
+        <tr style="background-color: #f5f5f4">
+          <td colspan="2"><h2>Loan Progress</h2></td>
+        </tr>
+
+        <tr>
+          <td class="equal"><h3 style="color: red">Total Loan</h3></td>
+          <td class="equal"><h3 style="color: red">9,74,000</h3></td>
+        </tr>
+
+        <tr>
+          <td><h3 style="color: green">Total Paid</h3></td>
+          <td>
+            <h3 style="color: green">{{total_paid_amount}}</h3>
+          </td>
+        </tr>
+
+        <tr>
+          <td><h3 style="color: orange">Remaining</h3></td>
+          <td>
+            <h3 style="color: orange">{{remaining_amount}}</h3>
+          </td>
+        </tr>
+      </table>
+
+      <div style="width: 23%">
+        <h2 style="font-size: 16px; line-height: 25px; margin-bottom: 5px">
+          Loan Progress
+        </h2>
+        <div class="bar-container">
+          <div class="bar-green" style="width: {{paid}}%;"></div>
+        </div>
+        <h2 style="font-size: 16px; float: left">{{paid}}%</h2>
+        <h2 style="font-size: 16px; float: inline-end">{{unpaid}}%</h2>
+      </div>
+    </section>
+
+    <table
+      class="info-table"
+      style="margin: 0 auto; width: 80%; margin-top: 45px"
+    >
+      <tr style="background-color: #f5f5f4">
+        <td colspan="4">
+          <div style="display: flex; align-items: center; gap: 10px; justify-content: center;">
+            <h2 style="margin: 0">Partner's</h2>
+            <img src="https://i.imgur.com/06R2pv4.png" height="30px" alt="" />
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <th class="equal" colspan="2">Sender</th>
+        <th class="equal" colspan="2">Receiver</th>
+      </tr>
+
+      <tr>
+        <td>Name</td>
+        <td>Ishaq Ahmad</td>
+        <td>Name</td>
+        <td>Rafiq Ahmad</td>
+      </tr>
+
+      <tr>
+        <td>Bank</td>
+        <td>Habib Bank Limited (HBL)</td>
+        <td>Bank</td>
+        <td>Alfalah</td>
+      </tr>
+
+      <tr>
+        <td>Bank A/C</td>
+
+        <td>09827900746803</td>
+        <td>Bank A/C</td>
+        <td>0734107373561</td>
+      </tr>
+
+      <tr>
+        <td>Contact</td>
+
+        <td>0308-7486256</td>
+        <td>Contact</td>
+        <td>0306-3990157</td>
+      </tr>
+    </table>
+  </body>
+</html>

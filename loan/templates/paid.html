@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paid History</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link rel="icon" href="https://i.imgur.com/uOMrNf2.png" />
+
+    <style type="text/css">
+      :root {
+        --header-background: #fff;
+        --black: #192a56;
+        --light-color: #666;
+        --green: #27ae60;
+        --dishes-color: #eee;
+        --dropdown-content-background: #f1f1f1;
+        --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Header Css Start */
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--header-background);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2% 5%;
+        box-shadow: var(--box-shadow);
+        z-index: 1;
+      }
+
+      header .logo {
+        color: var(--black);
+        font-size: 17px;
+        font-weight: bolder;
+        text-decoration: none;
+      }
+
+      header .navbar a {
+        border: px solid;
+        font-size: 17px;
+        border-radius: 5px;
+        padding: 8px 13px;
+        color: var(--light-color);
+        text-decoration: none;
+      }
+
+      header .navbar a:hover {
+        /* color: var(--header-background);
+        background: var(--green); */
+        border-bottom: 2px solid var(--green);
+        border-radius: 0px;
+      }
+
+      header .icons a {
+        margin-left: 8px;
+        text-decoration: none;
+        width: 40px;
+      }
+
+      /* Header css End */
+
+      ::-webkit-scrollbar {
+        width: 11px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #cacaca;
+        transition: 0.3s ease;
+        border-radius: 15px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #666;
+      }
+
+      .icons {
+        display: flex;
+        align-items: center;
+      }
+
+      #search-input {
+        position: absolute;
+        top: 50%;
+        right: 35px;
+        transform: translateY(-50%);
+        padding: 9px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px; /* Adjust as needed */
+      }
+
+      table {
+        width: 90%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        /* margin-top: 90px; */
+      }
+      .info-table {
+        margin-top: 90px;
+      }
+      .info-table tr,
+      th,
+      td {
+        padding: 20px;
+        border: 1px solid #ccc;
+        width: 16%;
+      }
+
+      tr th {
+        text-align: center;
+        font-size: 17px;
+        background-color: #f5f5f4;
+      }
+
+      tr td {
+        text-align: center;
+        font-size: 16px;
+      }
+
+      tr:hover {
+        background-color: #f5f5f4;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 2;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 6% auto;
+        padding: 50px 35px;
+        border: 1px solid #888;
+        width: 45%;
+        border-radius: 8px;
+        box-shadow: var(--box-shadow);
+      }
+
+      #close {
+        color: red;
+        float: right;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .form-title {
+        padding-left: 65px;
+        font-size: 25px;
+        color: #27ae60;
+      }
+
+      .qist-form {
+        margin-top: 10px;
+        padding: 20px;
+      }
+
+      .qist-table {
+        margin-top: 0px;
+      }
+
+      .qist-form .qist-table td:first-child {
+        text-align: left;
+        padding-left: 20px;
+        font-size: 17px;
+        font-weight: bold;
+      }
+
+      .qist-form .qist-table td:nth-child(2) {
+        text-align: center;
+        font-size: 17px;
+        font-weight: bold;
+      }
+
+      .qist-form .qist-table td:nth-child(2) input {
+        padding: 10px;
+        width: 65%;
+        border-radius: 5px;
+        border: 2px solid #ccc;
+      }
+
+      button {
+        padding: 10px 25px;
+        background-color: var(--green);
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!--Header start here-->
+
+    <header>
+      <a href="/index" class="logo">
+        <img
+          id="logo-img"
+          src="https://i.imgur.com/tDLvRWa.png"
+          alt="Loan - Hisab"
+          height="30px"
+        />
+      </a>
+
+      <nav class="navbar">
+        <a href="/index">Home</a>
+        <a href="/history">History</a>
+        <a href="/paid">Paid History</a>
+        <a href="login.php">Login</a>
+        <a href="logout.php">Logout</a>
+      </nav>
+
+      <div class="icons">
+        <div class="search-container">
+          <form>
+            <input type="text" id="search-input" placeholder="Search..." />
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <!--Header Ends here-->
+
+    <table class="info-table">
+      <tr>
+        <th>Total Paid</th>
+        <th>Remaining</th>
+        <th>Add New Qist</th>
+        <th>Download Statement</th>
+      </tr>
+
+      <tr>
+        <td style="color: green; font-weight: bold; font-size: 17px">
+          {{total_paid}}
+        </td>
+        <td style="color: orange; font-weight: bold; font-size: 17px">
+          {{total_remaining}}
+        </td>
+        <td title="click me" id="openModalBtn">
+          <img src="https://i.imgur.com/4kSD6WV.png" height="30px" alt="" />
+        </td>
+        <td>
+          
+          <a href="{% url 'export_qists_pdf' %}" class="btn btn-danger"><img src="https://i.imgur.com/5hOT4rN.png" height="40" alt="" /></a>
+        </td>
+      </tr>
+    </table>
+
+    <div
+      class="container"
+      style="display: flex; flex-direction: column; gap: 5px; margin-top: 45px"
+    >
+      <div
+        style="
+          margin: 0 80px;
+          padding: 20px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        "
+      >
+        <div>
+          <span
+            style="
+              display: inline-block;
+              border: 1px solid #ccc;
+              padding: 10px 20px;
+              border-radius: 5px;
+              background-color: #f9f9f9;
+              font-weight: bold;
+            "
+          >
+            Total Qist Paid = {{qists_count}}
+          </span>
+
+          <span
+            style="
+              display: inline-block;
+              border: 1px solid #ccc;
+              padding: 10px 20px;
+              border-radius: 5px;
+              background-color: #f9f9f9;
+              font-weight: bold;
+            "
+          >
+            {% if sort_by == "sr" %}
+            <a href="?sort=-sr" style="text-decoration: none; color: black"
+              >Sr ↑</a
+            >
+            {% elif sort_by == "-sr" %}
+            <a href="?sort=" style="text-decoration: none; color: black"
+              >Sr ↓</a
+            >
+            {% else %}
+            <a href="?sort=sr" style="text-decoration: none; color: black"
+              >Sr</a
+            >
+            {% endif %}
+          </span>
+        </div>
+
+        <form
+          style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center"
+          method="get"
+        >
+          <input
+            type="search"
+            name="search"
+            placeholder="Search by Transaction_ID"
+            value="{{ search_query }}"
+            style="
+              padding: 10px 13px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+            "
+          />
+
+          <input
+            type="submit"
+            value="Search"
+            style="
+              padding: 10px 20px;
+              background-color: #4caf50;
+              color: white;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            "
+          />
+        </form>
+      </div>
+
+      <table>
+        <tr>
+          <th>Sr#</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Transaction Id</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Action</th>
+        </tr>
+
+        {% for item in qists %}
+        <tr>
+          <td>{{ item.sr }}</td>
+          <td>{{ item.date|date:"d-m-Y" }}</td>
+          <td>{{ item.amount }}</td>
+          <td>{{ item.t_id }}</td>
+          <td>{{ item.sender }}</td>
+          <td>{{ item.receiver }}</td>
+          <td>
+            <a href="/delete-qist/{{item.id}}"
+              ><img height="25px" src="https://i.imgur.com/4k2WJ0t.png" alt=""
+            /></a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7">No records found</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <!-- Modal Start -->
+    <div id="qistModal" class="modal">
+      <div class="modal-content">
+        <span id="close" class="close">&times;</span>
+        <h2 class="form-title">Add New Qist</h2>
+        <form method="post" id="qist-form" class="qist-form">
+          {% csrf_token %}
+          <table class="qist-table">
+            <tr>
+              <td>Sr #</td>
+              <td><input type="number" name="sr" value="0" /></td>
+            </tr>
+            <tr>
+              <td>Date</td>
+              <td>
+                <input
+                  type="date"
+                  name="date"
+                  value="{{ qist.date|default:today|date:'Y-m-d' }}"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Amount</td>
+              <td><input type="number" name="amount" value="0" /></td>
+            </tr>
+            <tr>
+              <td>Transaction ID</td>
+              <td><input type="number" name="t_id" value="0" /></td>
+            </tr>
+            <tr>
+              <td>From</td>
+              <td><input type="text" name="sender" /></td>
+            </tr>
+            <tr>
+              <td>To</td>
+              <td><input type="text" name="receiver" /></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit">Save</button></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      var btn = document.getElementById("openModalBtn");
+      var modal = document.getElementById("qistModal");
+      var span = document.getElementById("close");
+
+      btn.onclick = function () {
+        modal.style.display = "block";
+      };
+
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+    <script>
+      // document
+      //   .getElementById("qist-form")
+      //   .addEventListener("submit", function (e) {
+      //     e.preventDefault();
+      //   });
+    </script>
+  </body>
+</html>

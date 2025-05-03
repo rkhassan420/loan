@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table {
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        
+        
+      }
+
+      tr,
+      th,
+      td {        
+        border: 1px solid #ccc;
+        width: 16%;
+        padding: 7px;
+      }
+
+      tr th {
+        text-align: center;
+        font-size: 15px;
+        background-color: #f5f5f4;
+      }
+
+      tr td {
+        text-align: center;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+   
+    <table>
+      <tr>
+        <th>SR</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Transaction ID</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+      </tr>
+      {% for q in qists %}
+      <tr>
+        <td>{{ q.sr }}</td>
+        <td>{{ q.date }}</td>
+        <td>{{ q.amount }}</td>
+        <td>{{ q.t_id }}</td>
+        <td>{{ q.sender }}</td>
+        <td>{{ q.receiver }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
