@@ -130,10 +130,18 @@ def paid(request):
 
 
 
-def export_qists_pdf(request):
+def export_qists_pdf(request):    
     qists = Qist.objects.all()
+    total_paid_amount = Qist.objects.aggregate(Sum('amount'))['amount__sum'] or 0 
+    remaining_amount=total_loan-total_paid_amount
+    data = {
+        'qists': qists,
+        'total_paid_amount': total_paid_amount,
+        'remaining_amount': remaining_amount
+    }
+
     template = get_template("qists_pdf.html")
-    html = template.render({'qists': qists})
+    html = template.render(data)
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="qist_records.pdf"'
     pisa.CreatePDF(html, dest=response)

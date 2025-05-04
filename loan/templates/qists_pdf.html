@@ -2,17 +2,25 @@
 <html>
   <head>
     <style>
+      * {
+        padding: 10px;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .progress-table{
+        margin-bottom: 15px;
+        width: 90%;
+      }
       table {
-        width: 100%;
+        width: 90%;
         margin: 0 auto;
         border-collapse: collapse;
-        
-        
       }
 
       tr,
       th,
-      td {        
+      td {
         border: 1px solid #ccc;
         width: 16%;
         padding: 7px;
@@ -20,18 +28,36 @@
 
       tr th {
         text-align: center;
-        font-size: 15px;
+        font-size: 16px;
         background-color: #f5f5f4;
       }
 
       tr td {
         text-align: center;
-        font-size: 14px;
-      }
+        font-size: 15px;
+      }      
     </style>
   </head>
   <body>
-   
+    <table class="progress-table">
+      <tr>
+        <td class="equal"><h3 style="color: red">Total Loan</h3></td>
+        <td><h3 style="color: green">Total Paid</h3></td>
+        <td><h3 style="color: orange">Remaining</h3></td>
+      </tr>
+
+      <tr>
+        <td class="equal"><h3 style="color: red">9,74,000</h3></td>
+
+        <td>
+          <h3 style="color: green">{{total_paid_amount}}</h3>
+        </td>
+        <td>
+          <h3 style="color: orange">{{remaining_amount}}</h3>
+        </td>
+      </tr>
+    </table>
+
     <table>
       <tr>
         <th>SR</th>
