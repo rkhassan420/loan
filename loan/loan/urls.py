@@ -23,8 +23,7 @@ urlpatterns = [
     path("",index),      
     path('index/',index),
     path('history/',history),
-    path('paid/',paid),
-    path("delete-qist/<int:qist_id>",delete_qist),
+    path('paid/',paid),   
     path('export/pdf/',export_qists_pdf, name='export_qists_pdf')
     
 ]

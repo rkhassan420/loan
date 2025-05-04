@@ -211,6 +211,206 @@
         border: none;
         cursor: pointer;
       }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        width: 100%;
+        margin-top: 45px;
+      }
+
+      .qist-container {
+        margin: 0 80px;
+        padding: 20px 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .qist-container span {
+        display: inline-block;
+        border: 1px solid #ccc;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        font-weight: bold;
+      }
+
+      .amount {
+        font-size: 17px;
+      }
+
+      .amount-imgs {
+        height: 34px;
+      }
+
+      .search-input {
+        padding: 10px 20px;
+      }
+
+      @media (max-width: 988px) {
+        .info-table tr,
+        th,
+        td {
+          padding: 18px;
+        }
+
+        tr th {
+          font-size: 15px;
+        }
+
+        tr td {
+          font-size: 15px;
+        }
+
+        .qist-container {
+          margin: 0 40px;
+        }
+      }
+
+      @media (max-width: 750px) {
+        .info-table tr,
+        th,
+        td {
+          padding: 15px;
+        }
+
+        tr th {
+          font-size: 14px;
+        }
+
+        tr td {
+          font-size: 14px;
+        }
+
+        .qist-container span {
+          font-size: 15px;
+        }
+      }
+
+      @media (max-width: 630px) {
+        .info-table tr,
+        th,
+        td {
+          padding: 12px;
+        }
+
+        tr th {
+          font-size: 13px;
+        }
+
+        tr td {
+          font-size: 13px;
+        }
+
+        /* .qist-container {
+          margin: 0 25px;
+        } */
+
+        .qist-container span {
+          font-size: 13px;
+        }
+
+        .qist-container {
+          margin: 0 32px;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .search-input {
+          padding: 10px 15px;
+        }
+      }
+
+      @media (max-width: 454px) {
+        .info-table tr,
+        th,
+        td {
+          padding: 10px;
+        }
+
+        tr th {
+          font-size: 10px;
+        }
+
+        tr td {
+          font-size: 10px;
+        }
+
+        .amount {
+          font-size: 14px;
+        }
+
+        .amount-imgs {
+          height: 30px;
+        }
+
+        .qist-container {
+          margin: 0 22px;
+        }
+
+        .search-input {
+          padding: 9px 12px;
+        }
+
+        .qist-container span {
+          padding: 8px 15px;
+        }
+      }
+
+      @media (max-width: 357px) {
+        .info-table tr,
+        th,
+        td {
+          padding: 8px;
+        }
+
+        tr th {
+          font-size: 8px;
+        }
+
+        tr td {
+          font-size: 8px;
+        }
+
+        .amount {
+          font-size: 12px;
+        }
+
+        .amount-imgs {
+          height: 28px;
+        }
+
+        .search-input {
+          padding: 6px 10px;
+        }
+
+        .qist-container span {
+          padding: 5px 12px;
+        }
+      }
+
+      @media (max-width: 328px) {
+        
+       
+        .amount {
+          font-size: 10px;
+        }
+
+        .amount-imgs {
+          height: 20px;
+        }
+
+        .search-input {
+          padding: 7px 8px;
+        }
+
+        .qist-container span {
+          padding: 6px 10px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -234,13 +434,11 @@
         <a href="logout.php">Logout</a>
       </nav>
 
-      <div class="icons">
+      <!-- <div class="icons">
         <div class="search-container">
-          <form>
-            <input type="text" id="search-input" placeholder="Search..." />
-          </form>
+          <img src="" alt="">
         </div>
-      </div>
+      </div> -->
     </header>
 
     <!--Header Ends here-->
@@ -254,59 +452,36 @@
       </tr>
 
       <tr>
-        <td style="color: green; font-weight: bold; font-size: 17px">
+        <td class="amount" style="color: green; font-weight: bold">
           {{total_paid}}
         </td>
-        <td style="color: orange; font-weight: bold; font-size: 17px">
+        <td class="amount" style="color: orange; font-weight: bold">
           {{total_remaining}}
         </td>
         <td title="click me" id="openModalBtn">
-          <img src="https://i.imgur.com/4kSD6WV.png" height="30px" alt="" />
+          <img
+            class="amount-imgs"
+            src="https://i.imgur.com/4kSD6WV.png"
+            alt=""
+          />
         </td>
         <td>
-          
-          <a href="{% url 'export_qists_pdf' %}" class="btn btn-danger"><img src="https://i.imgur.com/5hOT4rN.png" height="40" alt="" /></a>
+          <a href="{% url 'export_qists_pdf' %}" class="btn btn-danger"
+            ><img
+              class="amount-imgs"
+              src="https://i.imgur.com/5hOT4rN.png"
+              alt=""
+          /></a>
         </td>
       </tr>
     </table>
 
-    <div
-      class="container"
-      style="display: flex; flex-direction: column; gap: 5px; margin-top: 45px"
-    >
-      <div
-        style="
-          margin: 0 80px;
-          padding: 20px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-        "
-      >
+    <div class="container">
+      <div class="qist-container">
         <div>
-          <span
-            style="
-              display: inline-block;
-              border: 1px solid #ccc;
-              padding: 10px 20px;
-              border-radius: 5px;
-              background-color: #f9f9f9;
-              font-weight: bold;
-            "
-          >
-            Total Qist Paid = {{qists_count}}
-          </span>
+          <span> Total Qist Paid = {{qists_count}} </span>
 
-          <span
-            style="
-              display: inline-block;
-              border: 1px solid #ccc;
-              padding: 10px 20px;
-              border-radius: 5px;
-              background-color: #f9f9f9;
-              font-weight: bold;
-            "
-          >
+          <span>
             {% if sort_by == "sr" %}
             <a href="?sort=-sr" style="text-decoration: none; color: black"
               >Sr ↑</a
@@ -324,26 +499,24 @@
         </div>
 
         <form
+          class="search-form"
           style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center"
           method="get"
         >
           <input
+            class="search-input"
             type="search"
             name="search"
-            placeholder="Search by Transaction_ID"
+            placeholder="Search by Trx_ID"
             value="{{ search_query }}"
-            style="
-              padding: 10px 13px;
-              border: 1px solid #ccc;
-              border-radius: 5px;
-            "
+            style="border: 1px solid #ccc; border-radius: 5px"
           />
 
           <input
+            class="search-input"
             type="submit"
             value="Search"
             style="
-              padding: 10px 20px;
               background-color: #4caf50;
               color: white;
               border: none;
@@ -359,10 +532,9 @@
           <th>Sr#</th>
           <th>Date</th>
           <th>Amount</th>
-          <th>Transaction Id</th>
+          <th>Trx ID</th>
           <th>From</th>
           <th>To</th>
-          <th>Action</th>
         </tr>
 
         {% for item in qists %}
@@ -373,11 +545,6 @@
           <td>{{ item.t_id }}</td>
           <td>{{ item.sender }}</td>
           <td>{{ item.receiver }}</td>
-          <td>
-            <a href="/delete-qist/{{item.id}}"
-              ><img height="25px" src="https://i.imgur.com/4k2WJ0t.png" alt=""
-            /></a>
-          </td>
         </tr>
         {% empty %}
         <tr>

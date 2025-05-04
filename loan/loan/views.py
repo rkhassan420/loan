@@ -128,12 +128,6 @@ def paid(request):
 
 
 
-def delete_qist(request, qist_id):
-    qist = get_object_or_404(Qist, id=qist_id)
-    qist.delete()
-    return redirect('/paid/')
-
-
 
 
 def export_qists_pdf(request):

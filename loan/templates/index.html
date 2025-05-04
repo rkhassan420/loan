@@ -133,11 +133,33 @@
         padding: 20px;
         font-weight: bold;
       }
+
+      @media (max-width: 540px) {
+        td,
+        th {          
+          padding: 10px;
+        }
+
+        table {
+          font-size: 12px;
+        }
+      }
+
+      @media (max-width: 408px) {
+        td,
+        th {          
+          padding: 8px;
+        }
+
+        table {
+          font-size: 10px;
+        }
+      }
     </style>
   </head>
   <body>
     <!..Header start here..>
-    
+
     <header>
       <a href="/index" class="logo">
         <img
@@ -156,13 +178,13 @@
         <a href="logout.php">Logout</a>
       </nav>
 
-      <div class="icons">
+      <!-- <div class="icons">
         <div class="search-container">
           <form>
             <input type="text" id="search-input" placeholder="Search..." />
           </form>
         </div>
-      </div>
+      </div> -->
     </header>
 
     <!..Header Ends here..>
@@ -211,7 +233,14 @@
     >
       <tr style="background-color: #f5f5f4">
         <td colspan="4">
-          <div style="display: flex; align-items: center; gap: 10px; justify-content: center;">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              justify-content: center;
+            "
+          >
             <h2 style="margin: 0">Partner's</h2>
             <img src="https://i.imgur.com/06R2pv4.png" height="30px" alt="" />
           </div>
